@@ -5,7 +5,7 @@ import java.util.Scanner;
 import objetos.Barco;
 import java.util.*;
 import java.lang.*;
-import java.io.*;
+
 /**
  *
  * @author JMA
@@ -100,7 +100,7 @@ portaavions, trets);
          case 2: opcion= new int[] {11,11,2,1,1,1,30};
          break;
 
-         case 3: opcion= new int[] {11,11,0,0,0,1,30};
+         case 3: opcion= new int[] {11,11,1,1,0,1,10};
          break;
 
         case 4: 
