@@ -1,8 +1,11 @@
 // importación de módulos necesarios para el desarrollo de la práctica.
 package av1_aa2_afonarlaflota;
-import java.util.Arrays;
+
 import java.util.Scanner;
 import objetos.Barco;
+import java.util.*;
+import java.lang.*;
+import java.io.*;
 /**
  *
  * @author JMA
@@ -97,7 +100,7 @@ portaavions, trets);
          case 2: opcion= new int[] {10,11,2,1,1,1,30};
          break;
 
-         case 3: opcion= new int[] {10,11,1,1,0,0,10};
+         case 3: opcion= new int[] {10,11,0,0,0,1,20};
          break;
 
         case 4: 
@@ -116,17 +119,13 @@ portaavions, int trets) {
      char[][] tauler_buit = crear_tauler(files,columnes);
      char[][] tauler_barcos = crear_tauler(files,columnes);
      tauler_barcos = tauler_barcos(tauler_barcos,llanxes,vaixells,cuirassats,portaavions);
-     tauler_joc(tauler_barcos,tauler_buit,trets);
-    
+     trets(tauler_barcos,tauler_buit,trets);
+     imprimir_tauler(tauler_barcos);
+     fi_partida(tauler_barcos);
      
     
      
    
-   
-     
-     
-     
-     
   }
   
 //funcion crear_tauler_nivell_1() buit amb "-" en totes les poscions y la numeracion perimetral. devulve un array rellenado segun parametros de la práctica.
@@ -205,84 +204,85 @@ portaavions){
          for(z=y; z<y+llanxa.ncasillas; z++){
          tauler_barcos[x][z]= llanxa.letra;}
       }
-    
-   
+ 
      return tauler_barcos;
      }
  
  //funcio tret 
- public static void tauler_joc(char[][] tauler_barcos,char[][] tauler_buit, int trets){
+ public static void trets(char[][] tauler_barcos,char[][] tauler_buit, int trets){
     Scanner scan=new Scanner(System.in);
      int x=1;
-    String f= "A B C D E F G H I J K L M N Ñ O P Q R S T U V W X Y Z"; 
-// f[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
-     char [][] tauler_joc = tauler_barcos;
-     imprimir_tauler_buit(tauler_buit);
+     int fila=0;
+     int columna=0;
+    String letras= "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"; 
+    String numeros= " 123456789"; 
+     imprimir_tauler(tauler_buit);
+     
      for(int i=0; i<trets; i++){
-     System.out.print("tret: " + x +", introdueix fila");
-         char c = scan.next().charAt(0);
-       int  fila= f.indexOf(c);
-     //int fila = scan.nextInt();
-          
+     do{
+         System.out.print("tret: " + x +", introdueix fila");
+     char f = scan.next().charAt(0);
+     fila= letras.indexOf(f);        
      System.out.print("tret: " + x +", introdueix columna");
-     int columna = scan.nextInt();
-    
+     char c = scan.next().charAt(0);
+     columna= numeros.indexOf(c);
+      }while(fila  == -1 || columna == -1 );
+     
+     
     if(tauler_barcos[fila][columna] == '-'){
         System.out.println("Aigua!");
         tauler_buit[fila][columna]= 'A';
+        tauler_barcos[fila][columna]= 'A';
     }else{
         System.out.println("Tocat!!");
         tauler_buit[fila][columna]= 'X';
+        tauler_barcos[fila][columna]= 'X';
     }
-    imprimir_tauler_buit(tauler_buit);
-     }
+    imprimir_tauler(tauler_buit);
+    
+    x++;
+     } 
  }
  
+ //funcion comprobar tablero
  
+ public static void fi_partida(char[][] tauler_final){
+ 
+     
+     String tf= Arrays.deepToString(tauler_final);
+     boolean t = tf.contains("P")||tf.contains("Z")||tf.contains("V")||tf.contains("L");
+     System.out.println(tf);
+     System.out.println(t);
+     if (t){
+     System.out.println("HAS PERDUT!!!");}else{
+         System.out.println("HAS GUANYAT!!!");
+ }
+     
+   
+ /*    
+ boolean portavions = Arrays.stream(tauler_final).anyMatch("P"::equals);
+ boolean cuarassats = Arrays.stream(tauler_final).anyMatch("Z"::equals);
+ boolean vaixells = Arrays.stream(tauler_final).anyMatch("B"::equals);
+ boolean llanxes = Arrays.stream(tauler_final).anyMatch("L"::equals);
+ if(portavions || cuarassats|| vaixells || llanxes){
+     System.out.println(portavions +"HAS PERDUT!!!");
+  }else{System.out.println(portavions +"HAS GUANYAT!!!");}
+ */
+ }
+
  // función imprimir_matriu(), imprime el array bidimensional en forma de matriz por pantalla.
-    public static void imprimir_tauler_buit(char[][]tauler_buit){
+    public static void imprimir_tauler(char[][]tauler){
       System.out.print("-  ");
-        for (int i = 1; i <tauler_buit.length; ++i) {
+        for (int i = 1; i <tauler.length; ++i) {
        System.out.print(i + "  ");
       }
-        
-        for (int i = 0; i <tauler_buit.length; ++i) {
+        for (int i = 0; i <tauler.length; ++i) {
               System.out.println(" ");
-              for(int j=0; j<tauler_buit.length; j++){
-                  System.out.print(tauler_buit[i][j]+"  ");
-                  
-              }
+              for(int j=0; j<tauler.length; j++){
+                  System.out.print(tauler[i][j]+"  ");
+                 }
           }System.out.println(" ");System.out.println(" ");
     }
-     // función imprimir_matriu(), imprime el array bidimensional en forma de matriz por pantalla.
-    public static void imprimir_tauler_barcos (char[][]tauler_barcos){
-      
-        for (int i = 0; i <tauler_barcos.length; ++i) {
-              System.out.println(" ");
-              for(int j=0; j<tauler_barcos.length; j++){
-                  System.out.print(tauler_barcos[i][j]+"  ");
-                  
-              }
-          }
-    }
-
- // función imprimir_matriu(), imprime el array bidimensional en forma de matriz por pantalla.
-    public static void imprimir_tauler_joc(char[][]tauler_joc){
-      
-        for (int i = 0; i <tauler_joc.length; ++i) {
-              System.out.println(" ");
-              for(int j=0; j<tauler_joc.length; j++){
-                  System.out.print(tauler_joc[i][j]+"  ");
-                  
-              }
-          }System.out.println(" ");System.out.println(" ");
-    }
-
-
- 
- 
- 
- 
 
  }
    

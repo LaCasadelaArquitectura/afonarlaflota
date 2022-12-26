@@ -21,7 +21,7 @@ public class Barco {
         
             case "llanxa": letra='L'; ncasillas=1; colmax= 11-ncasillas; break;
         
-            case "vaixell": letra='B'; ncasillas=3; colmax= 11-ncasillas;break;
+            case "vaixell": letra='V'; ncasillas=3; colmax= 11-ncasillas;break;
             
             case "cuirassat": letra='Z'; ncasillas=4; colmax= 11-ncasillas;break;
              
