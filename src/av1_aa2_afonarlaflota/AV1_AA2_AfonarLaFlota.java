@@ -37,11 +37,11 @@ public class AV1_AA2_AfonarLaFlota {
              int vaixells= opcion[3];
              int cuirassats= opcion[4];
              int portaavions= opcion[5];
-             int max_intents= opcion[6];
+             int trets= opcion[6];
              
  // se llama a la funcion jugar_partida
                jugar_partida(files,columnes,llanxes,vaixells,cuirassats,
-portaavions,max_intents);
+portaavions, trets);
                
                
 // Se llama a la funcion crear_tauler_nivell_1(), que crea el tablero de nivel 1 según parametros de la práctica        
@@ -111,17 +111,18 @@ portaavions,max_intents);
      
 // funcion jugar_partida() 
   public static void jugar_partida(int files, int columnes, int llanxes, int vaixells, int cuirassats, int
-portaavions, int max_intents) {
+portaavions, int trets) {
       
      char[][] tauler_buit = crear_tauler(files,columnes);
      char[][] tauler_barcos = crear_tauler(files,columnes);
      tauler_barcos = tauler_barcos(tauler_barcos,llanxes,vaixells,cuirassats,portaavions);
+     tauler_joc(tauler_barcos,tauler_buit,trets);
     
      
     
      
-    imprimir_tauler_buit(tauler_buit);
-    imprimir_tauler_barcos(tauler_barcos);
+   
+   
      
      
      
@@ -215,16 +216,45 @@ portaavions){
    
      return tauler_barcos;
      }
+ 
+ //funcio tret 
+ public static void tauler_joc(char[][] tauler_barcos,char[][] tauler_buit, int trets){
+    Scanner scan=new Scanner(System.in);
+     int x=1;
+     char [][] tauler_joc = tauler_barcos;
+     imprimir_tauler_buit(tauler_buit);
+     for(int i=0; i<trets; i++){
+     System.out.print("tret: " + x +", introdueix fila");
+     int fila = scan.nextInt();
+     System.out.print("tret: " + x +", introdueix columna");
+     int columna = scan.nextInt();
+    
+    if(tauler_barcos[fila][columna] == '-'){
+        System.out.print("Aigua!");
+        tauler_buit[fila][columna]= 'A';
+    }else{
+        System.out.print("Tocat!!");
+        tauler_buit[fila][columna]= 'X';
+    }
+    imprimir_tauler_buit(tauler_buit);
+     }
+ }
+ 
+ 
  // función imprimir_matriu(), imprime el array bidimensional en forma de matriz por pantalla.
     public static void imprimir_tauler_buit(char[][]tauler_buit){
-      
+      System.out.print("-  ");
+        for (int i = 1; i <tauler_buit.length; ++i) {
+       System.out.print(i + "  ");
+      }
+        
         for (int i = 0; i <tauler_buit.length; ++i) {
               System.out.println(" ");
               for(int j=0; j<tauler_buit.length; j++){
-                  System.out.print(tauler_buit[i][j]+" ");
+                  System.out.print(tauler_buit[i][j]+"  ");
                   
               }
-          }
+          }System.out.println(" ");System.out.println(" ");
     }
      // función imprimir_matriu(), imprime el array bidimensional en forma de matriz por pantalla.
     public static void imprimir_tauler_barcos (char[][]tauler_barcos){
@@ -232,13 +262,23 @@ portaavions){
         for (int i = 0; i <tauler_barcos.length; ++i) {
               System.out.println(" ");
               for(int j=0; j<tauler_barcos.length; j++){
-                  System.out.print(tauler_barcos[i][j]+" ");
+                  System.out.print(tauler_barcos[i][j]+"  ");
                   
               }
           }
     }
 
- 
+ // función imprimir_matriu(), imprime el array bidimensional en forma de matriz por pantalla.
+    public static void imprimir_tauler_joc(char[][]tauler_joc){
+      
+        for (int i = 0; i <tauler_joc.length; ++i) {
+              System.out.println(" ");
+              for(int j=0; j<tauler_joc.length; j++){
+                  System.out.print(tauler_joc[i][j]+"  ");
+                  
+              }
+          }System.out.println(" ");System.out.println(" ");
+    }
 
 
  
