@@ -14,7 +14,7 @@ public class AV1_AA2_AfonarLaFlota {
 
 // se delcara la matriz principal del tablero    
      
-    
+int contador = 1;   
 // se declara la funcion main
     public static void main(String[] args) {
 // se llama a la funcion inicio 1 que continee el mensaje de bienvenida.        
@@ -94,13 +94,13 @@ portaavions, trets);
      
      switch(nivell){
     
-         case 1: opcion= new int[] {10,11,5,3,1,1,50};
+         case 1: opcion= new int[] {11,11,5,3,1,1,50};
          break;
          
-         case 2: opcion= new int[] {10,11,2,1,1,1,30};
+         case 2: opcion= new int[] {11,11,2,1,1,1,30};
          break;
 
-         case 3: opcion= new int[] {10,11,0,0,0,1,20};
+         case 3: opcion= new int[] {11,11,0,0,0,1,30};
          break;
 
         case 4: 
@@ -211,7 +211,7 @@ portaavions){
  //funcio tret 
  public static void trets(char[][] tauler_barcos,char[][] tauler_buit, int trets){
     Scanner scan=new Scanner(System.in);
-     int x=1;
+     int contador=1;
      int fila=0;
      int columna=0;
     String letras= "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"; 
@@ -220,16 +220,16 @@ portaavions){
      
      for(int i=0; i<trets; i++){
      do{
-         System.out.print("tret: " + x +", introdueix fila");
+         System.out.print("tret: " + contador +", introdueix fila");
      char f = scan.next().charAt(0);
      fila= letras.indexOf(f);        
-     System.out.print("tret: " + x +", introdueix columna");
+     System.out.print("tret: " + contador +", introdueix columna");
      char c = scan.next().charAt(0);
      columna= numeros.indexOf(c);
       }while(fila  == -1 || columna == -1 );
      
      
-    if(tauler_barcos[fila][columna] == '-'){
+    if(tauler_barcos[fila][columna] == '-' || tauler_barcos[fila][columna] == 'A'){
         System.out.println("Aigua!");
         tauler_buit[fila][columna]= 'A';
         tauler_barcos[fila][columna]= 'A';
@@ -240,7 +240,13 @@ portaavions){
     }
     imprimir_tauler(tauler_buit);
     
-    x++;
+  
+// para la partida y te indica la victoria cunado hundes todos los barcos.    
+    String tf= Arrays.deepToString(tauler_barcos);
+     boolean t = tf.contains("P")||tf.contains("Z")||tf.contains("V")||tf.contains("L");
+     if (t == false){
+     break;}
+     contador++;
      } 
  }
  
@@ -251,23 +257,10 @@ portaavions){
      
      String tf= Arrays.deepToString(tauler_final);
      boolean t = tf.contains("P")||tf.contains("Z")||tf.contains("V")||tf.contains("L");
-     System.out.println(tf);
-     System.out.println(t);
      if (t){
      System.out.println("HAS PERDUT!!!");}else{
          System.out.println("HAS GUANYAT!!!");
  }
-     
-   
- /*    
- boolean portavions = Arrays.stream(tauler_final).anyMatch("P"::equals);
- boolean cuarassats = Arrays.stream(tauler_final).anyMatch("Z"::equals);
- boolean vaixells = Arrays.stream(tauler_final).anyMatch("B"::equals);
- boolean llanxes = Arrays.stream(tauler_final).anyMatch("L"::equals);
- if(portavions || cuarassats|| vaixells || llanxes){
-     System.out.println(portavions +"HAS PERDUT!!!");
-  }else{System.out.println(portavions +"HAS GUANYAT!!!");}
- */
  }
 
  // función imprimir_matriu(), imprime el array bidimensional en forma de matriz por pantalla.
