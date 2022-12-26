@@ -2,6 +2,7 @@
 package av1_aa2_afonarlaflota;
 import java.util.Arrays;
 import java.util.Scanner;
+import objetos.Barco;
 /**
  *
  * @author JMA
@@ -111,9 +112,16 @@ portaavions,max_intents);
 // funcion jugar_partida() 
   public static void jugar_partida(int files, int columnes, int llanxes, int vaixells, int cuirassats, int
 portaavions, int max_intents) {
+      
+     char[][] tauler_buit = crear_tauler(files,columnes);
+     char[][] tauler_barcos = crear_tauler(files,columnes);
+     tauler_barcos = tauler_barcos(tauler_barcos,llanxes,vaixells,cuirassats,portaavions);
     
-     char[][] tauler_de_joc = crear_tauler(files,columnes);
-     imprimir_matriu(tauler_de_joc);
+     
+    
+     
+    imprimir_tauler_buit(tauler_buit);
+    imprimir_tauler_barcos(tauler_barcos);
      
      
      
@@ -146,35 +154,89 @@ portaavions, int max_intents) {
     }
   
  //Funcion aletorio 
-   public static int random(){
-    int aleatori = (int) (1+Math.random()*(11-1+1));
+   public static int random(int colmax){
+    int aleatori = (int) (1+Math.random()*(colmax-1+1));
    return aleatori;
  }
   
 //funcion introducir barco
-  
+ public static char[][] tauler_barcos(char[][] tauler_barcos,int llanxes, int vaixells, int cuirassats, int
+portaavions){
+     int x; int y; int z;
+      Barco portaavio;  portaavio = new Barco("portaavions");
+      
+      for (int i=0; i<portaavions; i++){
+         do{x=random(10); y= random(portaavio.colmax);
+         }while(tauler_barcos[x][y] != '-' ||
+                 tauler_barcos[x][y+1] != '-' ||
+                 tauler_barcos[x][y+2] != '-' ||
+                 tauler_barcos[x][y+3] != '-'||
+                 tauler_barcos[x][y+4] != '-');
+         for(z=y; z<y+portaavio.ncasillas; z++){
+         tauler_barcos[x][z]= portaavio.letra;}  
+      }
+     
+      Barco cuirassat;  cuirassat = new Barco("cuirassat");
+      for (int i=0; i<cuirassats; i++){
+         do{x=random(10); y= random(portaavio.colmax);
+         }while(tauler_barcos[x][y] != '-' ||
+                 tauler_barcos[x][y+1] != '-' ||
+                 tauler_barcos[x][y+2] != '-' ||
+                 tauler_barcos[x][y+3] != '-'||
+                 tauler_barcos[x][y+4] != '-');
+         for(z=y; z<y+cuirassat.ncasillas; z++){
+         tauler_barcos[x][z]= cuirassat.letra;}
+      }
+     
+     Barco vaixell;  vaixell = new Barco("vaixell");
+       for (int i=0; i<vaixells; i++){
+         do{x=random(10); y= random(portaavio.colmax);
+         }while(tauler_barcos[x][y] != '-' ||
+                 tauler_barcos[x][y+1] != '-' ||
+                 tauler_barcos[x][y+2] != '-' ||
+                 tauler_barcos[x][y+3] != '-'||
+                 tauler_barcos[x][y+4] != '-');
+         for(z=y; z<y+vaixell.ncasillas; z++){
+         tauler_barcos[x][z]= vaixell.letra;}
+      }
+    
+    Barco llanxa;  llanxa = new Barco("llanxa");
+         for (int i=0; i<llanxes; i++){
+         do{x=random(10); y= random(portaavio.colmax);
+         }while(tauler_barcos[x][y] != '-' ||
+                 tauler_barcos[x][y+1] != '-' ||
+                 tauler_barcos[x][y+2] != '-' ||
+                 tauler_barcos[x][y+3] != '-'||
+                 tauler_barcos[x][y+4] != '-');
+         for(z=y; z<y+llanxa.ncasillas; z++){
+         tauler_barcos[x][z]= llanxa.letra;}
+      }
+    
    
-  
+     return tauler_barcos;
+     }
  // función imprimir_matriu(), imprime el array bidimensional en forma de matriz por pantalla.
-    public static void imprimir_matriu(char[][]tauler_de_joc){
-      /*  int x= 0;
-        int y=65; 
-           
-        for (int i = 0; i <tauler.length; ++i) {
-        System.out.print(x+" ");
-        x++;
-        
-        }
-        */
-        for (int i = 0; i <tauler_de_joc.length; ++i) {
+    public static void imprimir_tauler_buit(char[][]tauler_buit){
+      
+        for (int i = 0; i <tauler_buit.length; ++i) {
               System.out.println(" ");
-              for(int j=0; j<tauler_de_joc.length; j++){
-                  System.out.print(tauler_de_joc[i][j]+" ");
+              for(int j=0; j<tauler_buit.length; j++){
+                  System.out.print(tauler_buit[i][j]+" ");
                   
               }
           }
     }
-    
+     // función imprimir_matriu(), imprime el array bidimensional en forma de matriz por pantalla.
+    public static void imprimir_tauler_barcos (char[][]tauler_barcos){
+      
+        for (int i = 0; i <tauler_barcos.length; ++i) {
+              System.out.println(" ");
+              for(int j=0; j<tauler_barcos.length; j++){
+                  System.out.print(tauler_barcos[i][j]+" ");
+                  
+              }
+          }
+    }
 
  
 
