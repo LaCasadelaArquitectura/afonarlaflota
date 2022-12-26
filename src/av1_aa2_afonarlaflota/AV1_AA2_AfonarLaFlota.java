@@ -91,13 +91,13 @@ portaavions, trets);
      
      switch(nivell){
     
-         case 1: opcion= new int[] {11,11,5,3,1,1,50};
+         case 1: opcion= new int[] {10,11,5,3,1,1,50};
          break;
          
-         case 2: opcion= new int[] {11,11,2,1,1,1,30};
+         case 2: opcion= new int[] {10,11,2,1,1,1,30};
          break;
 
-         case 3: opcion= new int[] {11,11,1,1,0,0,10};
+         case 3: opcion= new int[] {10,11,1,1,0,0,10};
          break;
 
         case 4: 
@@ -136,21 +136,14 @@ portaavions, int trets) {
             Arrays.fill(tauler[i],'-');
 }
           int z=65; 
-          for (int j = 1; j <tauler.length; ++j) {
+          for (int j = 0; j <tauler.length; ++j) {
             int asciiValue = z;
             char convertedChar = (char)asciiValue;
             tauler[j][0] = convertedChar;
             z++;
           }
           
-          int w=48; 
-          for (int j = 1; j <tauler.length; ++j) {
-            int asciiValue = w;
-            char convertedChar = (char)asciiValue;
-            tauler[0][j] = convertedChar;
-            w++;
-          }
-          
+        
           return tauler;
     }
   
@@ -167,7 +160,7 @@ portaavions){
       Barco portaavio;  portaavio = new Barco("portaavions");
       
       for (int i=0; i<portaavions; i++){
-         do{x=random(10); y= random(portaavio.colmax);
+         do{x=random(9); y= random(portaavio.colmax);
          }while(tauler_barcos[x][y] != '-' ||
                  tauler_barcos[x][y+1] != '-' ||
                  tauler_barcos[x][y+2] != '-' ||
@@ -179,7 +172,7 @@ portaavions){
      
       Barco cuirassat;  cuirassat = new Barco("cuirassat");
       for (int i=0; i<cuirassats; i++){
-         do{x=random(10); y= random(portaavio.colmax);
+         do{x=random(9); y= random(portaavio.colmax);
          }while(tauler_barcos[x][y] != '-' ||
                  tauler_barcos[x][y+1] != '-' ||
                  tauler_barcos[x][y+2] != '-' ||
@@ -191,7 +184,7 @@ portaavions){
      
      Barco vaixell;  vaixell = new Barco("vaixell");
        for (int i=0; i<vaixells; i++){
-         do{x=random(10); y= random(portaavio.colmax);
+         do{x=random(9); y= random(portaavio.colmax);
          }while(tauler_barcos[x][y] != '-' ||
                  tauler_barcos[x][y+1] != '-' ||
                  tauler_barcos[x][y+2] != '-' ||
@@ -203,7 +196,7 @@ portaavions){
     
     Barco llanxa;  llanxa = new Barco("llanxa");
          for (int i=0; i<llanxes; i++){
-         do{x=random(10); y= random(portaavio.colmax);
+         do{x=random(9); y= random(portaavio.colmax);
          }while(tauler_barcos[x][y] != '-' ||
                  tauler_barcos[x][y+1] != '-' ||
                  tauler_barcos[x][y+2] != '-' ||
@@ -221,19 +214,24 @@ portaavions){
  public static void tauler_joc(char[][] tauler_barcos,char[][] tauler_buit, int trets){
     Scanner scan=new Scanner(System.in);
      int x=1;
+    String f= "A B C D E F G H I J K L M N Ñ O P Q R S T U V W X Y Z"; 
+// f[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
      char [][] tauler_joc = tauler_barcos;
      imprimir_tauler_buit(tauler_buit);
      for(int i=0; i<trets; i++){
      System.out.print("tret: " + x +", introdueix fila");
-     int fila = scan.nextInt();
+         char c = scan.next().charAt(0);
+       int  fila= f.indexOf(c);
+     //int fila = scan.nextInt();
+          
      System.out.print("tret: " + x +", introdueix columna");
      int columna = scan.nextInt();
     
     if(tauler_barcos[fila][columna] == '-'){
-        System.out.print("Aigua!");
+        System.out.println("Aigua!");
         tauler_buit[fila][columna]= 'A';
     }else{
-        System.out.print("Tocat!!");
+        System.out.println("Tocat!!");
         tauler_buit[fila][columna]= 'X';
     }
     imprimir_tauler_buit(tauler_buit);
