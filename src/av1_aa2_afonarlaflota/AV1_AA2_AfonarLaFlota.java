@@ -1,4 +1,4 @@
-// importación de módulos necesarios para el desarrollo de la práctica.
+// Importació de móduls necesaris per el desembolupament de la practica.
 package av1_aa2_afonarlaflota;
 
 import java.util.Scanner;
@@ -12,81 +12,73 @@ import java.lang.*;
  */
 public class AV1_AA2_AfonarLaFlota {
 
-// se delcara la matriz principal del tablero    
+// Es delcara la matriu principal del tauler. 
      
 int contador = 1;   
-// se declara la funcion main
+// Es declara la funcion main
     public static void main(String[] args) {
-// se llama a la funcion inicio 1 que continee el mensaje de bienvenida.        
-        inicio1();
+// Es crida a la funcio inici 1 que conté el misatje de benvinguda.      
+        inici1();
         
-// se llama a la funcion inicio 2 que contiene la lista de niveles a escoger.        
-        inicio2();
+// Es crida a la funcio inici 2 que conté la llista de nivels a triar.        
+        inici2();
         
-//se declara el esacaner que nos permite introdcir datos por teclado.
+//Es declara el esacaner que ens permet introduir dades per el teclat.
         Scanner scan=new Scanner(System.in);
         
-// se pide un dato de entrada al usuario y se llama a la funcion nivell()
-       int niv = scan.nextInt();
-       int nivell =  nivell(niv);
+// Es demana una dada de entrada al usuari i es crida a la funció nivell().
+        int niv = scan.nextInt();
+        int nivell =  nivell(niv);
        
-// se llama a la funcion opcion
+// Es crida a la funcio opció. S'agafa el valor de les variables del nivell
+// buscant en la direccion concreta dins del arrel.
     
     int[] opcion= opcion(nivell);
     
-             int files= opcion[0];
-             int columnes= opcion[1];
-             int llanxes= opcion[2];
-             int vaixells= opcion[3];
-             int cuirassats= opcion[4];
-             int portaavions= opcion[5];
-             int trets= opcion[6];
+        int files= opcion[0];
+        int columnes= opcion[1];
+        int llanxes= opcion[2];
+        int vaixells= opcion[3];
+        int cuirassats= opcion[4];
+        int portaavions= opcion[5];
+        int trets= opcion[6];
              
- // se llama a la funcion jugar_partida
-               jugar_partida(files,columnes,llanxes,vaixells,cuirassats,
-portaavions, trets);
-               
-               
-// Se llama a la funcion crear_tauler_nivell_1(), que crea el tablero de nivel 1 según parametros de la práctica        
-       // crear_tauler_nivell_1();
-// Se llama a la funcion imprimir_matriu(); que muestra el tablero vacio en pantalla        
-  //      char[][] tauler_de_joc = crear_tauler(files,columnes);        
-   //     imprimir_matriu(tauler_de_joc);
-
-     
-        
+ // Es Crida a la funció jugar_partida (El programa pricipal continuará dins d'aquesta funció.)
+        jugar_partida(files,columnes,llanxes,vaixells,cuirassats,portaavions, trets);          
     }
-// funcion inicio1() muestra el mensaje de bienvenida.      
-    public static void inicio1(){
+      
+// FUNCIÓ:  inici1() trau per pantalla el misatje de benvinguda.      
+    public static void inici1(){
          System.out.println("===== BENVINGUTS A ENFONSAR LA FLOTA =====");
       System.out.println("");
       System.out.println("Nivells de dificultat:");}
 
-// funcion inicio2() muestra los niveles de dificultad disponibles        
-    public static void inicio2(){
+// FUNCIÓ:  inici2() trau per pantalla els nivells de dificultad disponibles        
+    public static void inici2(){
       System.out.println("1. Fàcil: 5 llanxes, 3 vaixells, 1 cuirassat i 1 portaavions (50 trets).");
       System.out.println("2. Mitjà: 2 llanxes, 1 vaixell, 1 cuirassat i 1 portaavions (30 trets).");
       System.out.println("3. Difícil: 1 llanxa y 1 vaixell (10 trets).");
       System.out.println("Quin nivell tries? ");
     }
  
-// funcion repetirNumero() muestra mesaje de error 
+// FUNCIÓ: repetirNumero() trau per pantalla un misatje de error si l'usuari intrdueix un numero diferent als disponibles.
      public static void repetirNumero() {
-     System.out.println("El nivell escollit no es correcte, torna a triar");
-    
+     System.out.println("El nivell escollit no es correcte, torna a triar");    
     }  
  
-// funcion nivell (niv) devuelve el numero del nivel solo si es correcto.  
+// FUNCIÓ: nivell (niv) torna el número del nivell nomes si es correcte.  
      public static int nivell (int niv){
       Scanner scan=new Scanner(System.in);
       while (niv != 1 && niv != 2 && niv != 3 && niv != 4){
           repetirNumero();
-          inicio2();
+          inici2();
           niv = scan.nextInt();
       }return niv;
     }
     
-// función opcion()  
+// FUNCIÓ: opcion()  segons el nivell escollit, mijançant un switch, es introduixen dins un arrel  
+//   totes les  variables relatives al nivell (files, columnes, llanxes, vaixells, cuirassats
+//   portaavions i trets) Retorna l'arrel escollit..
  public static int[] opcion(int nivell) {
           
      Scanner scan=new Scanner(System.in);
@@ -94,13 +86,13 @@ portaavions, trets);
      
      switch(nivell){
     
-         case 1: opcion= new int[] {11,11,5,3,1,1,50};
+         case 1: opcion= new int[] {10,10,5,3,1,1,50};
          break;
          
-         case 2: opcion= new int[] {11,11,2,1,1,1,30};
+         case 2: opcion= new int[] {10,10,2,1,1,1,30};
          break;
 
-         case 3: opcion= new int[] {11,11,1,1,0,1,10};
+         case 3: opcion= new int[] {10,10,1,1,0,0,10};
          break;
 
         case 4: 
@@ -112,7 +104,7 @@ portaavions, trets);
                 } return opcion;
             }
      
-// funcion jugar_partida() 
+// FUNCIÓ: jugar_partida() (El programa pricipal continua ací.)
   public static void jugar_partida(int files, int columnes, int llanxes, int vaixells, int cuirassats, int
 portaavions, int trets) {
       
@@ -121,43 +113,40 @@ portaavions, int trets) {
      tauler_barcos = tauler_barcos(tauler_barcos,llanxes,vaixells,cuirassats,portaavions);
      trets(tauler_barcos,tauler_buit,trets);
      imprimir_tauler(tauler_barcos);
-     fi_partida(tauler_barcos);
-     
-    
-     
-   
+     fi_partida(tauler_barcos);  
   }
   
-//funcion crear_tauler_nivell_1() buit amb "-" en totes les poscions y la numeracion perimetral. devulve un array rellenado segun parametros de la práctica.
+// FUNCIÓ: crear_tauler_nivell_1() buit amb "-" en totes les poscions y la numeració perimetral. 
+//  torna un array ple segons les indicacions de la práctica. Per poder auto plenar els caracters
+// permitrals es fa mijançant el codi ASCII. 
  public static char[][] crear_tauler(int files, int columnes){
         char[][]  tauler= new char[files][columnes];     
           for (int i = 0; i <tauler.length; ++i) {
             Arrays.fill(tauler[i],'-');
-}
-          int z=65; 
-          for (int j = 0; j <tauler.length; ++j) {
-            int asciiValue = z;
-            char convertedChar = (char)asciiValue;
-            tauler[j][0] = convertedChar;
-            z++;
-          }
-          
-        
-          return tauler;
+    }return tauler;
     }
   
- //Funcion aletorio 
+// FUNCIÓ: Aletori. Donant-li la columna o fila máxima, retorna un valor aleatori.
    public static int random(int colmax){
     int aleatori = (int) (1+Math.random()*(colmax-1+1));
    return aleatori;
  }
   
-//funcion introducir barco
- public static char[][] tauler_barcos(char[][] tauler_barcos,int llanxes, int vaixells, int cuirassats, int
+/* PROCEDIMENT: Inserir els barcos en posicions aleatòries
+   Es crida als "objectes" barcos de la clase "Barco" els cuals porten prededinides les seues
+   caracteristiques en funció del tipus de vaixell. (lletra, numero de espais que ocupa y la posició
+   maxima en la que es pot inserir). 
+Per inserir els Barcos, es crea un bucle for per cada tipus on s'agafa un numero aleatori per
+   les files y atre per les columnes, amb la columna mazima predefinida per la clase en funció
+   de les caselles que ocupa el barco. Comprova que les posicions son buides i inserix el Barco.
+Per ultim, torna l'arrel bidimensional del tauler.   
+*/
+
+public static char[][] tauler_barcos(char[][] tauler_barcos,int llanxes, int vaixells, int cuirassats, int
 portaavions){
      int x; int y; int z;
       Barco portaavio;  portaavio = new Barco("portaavions");
-      
+     
       for (int i=0; i<portaavions; i++){
          do{x=random(9); y= random(portaavio.colmax);
          }while(tauler_barcos[x][y] != '-' ||
@@ -168,7 +157,6 @@ portaavions){
          for(z=y; z<y+portaavio.ncasillas; z++){
          tauler_barcos[x][z]= portaavio.letra;}  
       }
-     
       Barco cuirassat;  cuirassat = new Barco("cuirassat");
       for (int i=0; i<cuirassats; i++){
          do{x=random(9); y= random(portaavio.colmax);
@@ -180,7 +168,6 @@ portaavions){
          for(z=y; z<y+cuirassat.ncasillas; z++){
          tauler_barcos[x][z]= cuirassat.letra;}
       }
-     
      Barco vaixell;  vaixell = new Barco("vaixell");
        for (int i=0; i<vaixells; i++){
          do{x=random(9); y= random(portaavio.colmax);
@@ -192,7 +179,6 @@ portaavions){
          for(z=y; z<y+vaixell.ncasillas; z++){
          tauler_barcos[x][z]= vaixell.letra;}
       }
-    
     Barco llanxa;  llanxa = new Barco("llanxa");
          for (int i=0; i<llanxes; i++){
          do{x=random(9); y= random(portaavio.colmax);
@@ -203,19 +189,25 @@ portaavions){
                  tauler_barcos[x][y+4] != '-');
          for(z=y; z<y+llanxa.ncasillas; z++){
          tauler_barcos[x][z]= llanxa.letra;}
-      }
- 
-     return tauler_barcos;
+      }return tauler_barcos;
      }
  
- //funcio tret 
+/* FUNCIÓ: Tret.  Declara l'éscaner, un contador de trets, dos variables numeriques per
+les files i les columnes, dos varialbes String on els numeros o les lletres coincidixen amb el
+index del String transofrmat a arrel i el tauler.
+Es crea un Do While dins de un for igual al numero de trets. El escaner ens demana una entrada
+i si aquesta no está dins el parametres de les String, retorna -1, que el while s'encarrega de filtrar.
+A continuació mijantant if comprobem si la casella es buida y actuem en consequencia.
+Finalment es mostra el tauler per pantalla.
+
+*/
  public static void trets(char[][] tauler_barcos,char[][] tauler_buit, int trets){
     Scanner scan=new Scanner(System.in);
      int contador=1;
      int fila=0;
      int columna=0;
     String letras= "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"; 
-    String numeros= " 123456789"; 
+    String numeros= "123456789"; 
      imprimir_tauler(tauler_buit);
      
      for(int i=0; i<trets; i++){
@@ -241,7 +233,10 @@ portaavions){
     imprimir_tauler(tauler_buit);
     
   
-// para la partida y te indica la victoria cunado hundes todos los barcos.    
+// FUNCIÓ: Break. Para la partida y te indica la victoria cuan afones tots els barcos.
+// Mijançant la funció Arrays.deepToString(), es transforma l'arrel en un String.
+// Amb la funció tf.contains() es recorre la String en busca dels caracters identificatius dels barcos.
+// si no es troba ningú, ejecuta un break en la funcio Trets()
     String tf= Arrays.deepToString(tauler_barcos);
      boolean t = tf.contains("P")||tf.contains("Z")||tf.contains("V")||tf.contains("L");
      if (t == false){
@@ -249,12 +244,11 @@ portaavions){
      contador++;
      } 
  }
- 
- //funcion comprobar tablero
+// FUNCIÓ: fi de partida. Amb el mateix metode que la funció Break, escaneja el tauler en busca
+// de les lletres identificatives del Barcos i finalmente imprimix per pantalla el resultat final. 
  
  public static void fi_partida(char[][] tauler_final){
- 
-     
+  
      String tf= Arrays.deepToString(tauler_final);
      boolean t = tf.contains("P")||tf.contains("Z")||tf.contains("V")||tf.contains("L");
      if (t){
@@ -263,20 +257,26 @@ portaavions){
  }
  }
 
- // función imprimir_matriu(), imprime el array bidimensional en forma de matriz por pantalla.
+// FUNCIÓ:  imprimir_tauler(), imprimix l'arrel bidimensional en forma de matriu per pantalla 
+ //cada vegada que es cridada. Aquesta funció es cridada diverses vegades en aquest programa.
     public static void imprimir_tauler(char[][]tauler){
-      System.out.print("-  ");
-        for (int i = 1; i <tauler.length; ++i) {
-       System.out.print(i + "  ");
+     
+      char convertedChar = 'a';
+                 
+        System.out.print("-  ");
+        for (int i = 0; i <tauler.length; ++i) {
+       System.out.print(i+1 + "  ");
       }
         for (int i = 0; i <tauler.length; ++i) {
-              System.out.println(" ");
+            System.out.println(" ");
+             int asciiValue = i+65;
+            convertedChar = (char)asciiValue;
+            System.out.print(convertedChar+"  ");  
               for(int j=0; j<tauler.length; j++){
                   System.out.print(tauler[i][j]+"  ");
                  }
           }System.out.println(" ");System.out.println(" ");
     }
-
  }
    
 
@@ -285,6 +285,7 @@ portaavions){
    
      
      
+            
      
      
      

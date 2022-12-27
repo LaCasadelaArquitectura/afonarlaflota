@@ -19,13 +19,13 @@ public class Barco {
      
         switch(tipodebarco){
         
-            case "llanxa": letra='L'; ncasillas=1; colmax= 11-ncasillas; break;
+            case "llanxa": letra='L'; ncasillas=1; colmax= 10-ncasillas; break;
         
-            case "vaixell": letra='V'; ncasillas=3; colmax= 11-ncasillas;break;
+            case "vaixell": letra='V'; ncasillas=3; colmax= 10-ncasillas;break;
             
-            case "cuirassat": letra='Z'; ncasillas=4; colmax= 11-ncasillas;break;
+            case "cuirassat": letra='Z'; ncasillas=4; colmax= 10-ncasillas;break;
              
-            case "portaavions": letra='P'; ncasillas=5; colmax= 11-ncasillas;break;
+            case "portaavions": letra='P'; ncasillas=5; colmax= 10-ncasillas;break;
     }
         
       
