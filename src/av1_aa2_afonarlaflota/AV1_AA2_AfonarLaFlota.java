@@ -69,7 +69,7 @@ int contador = 1;
 // FUNCIÓ: nivell (niv) torna el número del nivell nomes si es correcte.  
      public static int nivell (int niv){
       Scanner scan=new Scanner(System.in);
-      while (niv != 1 && niv != 2 && niv != 3 && niv != 4){
+      while (niv != 1 && niv != 2 && niv != 3){
           repetirNumero();
           inici2();
           niv = scan.nextInt();
@@ -94,12 +94,6 @@ int contador = 1;
 
          case 3: opcion= new int[] {10,10,1,1,0,0,10};
          break;
-
-        case 4: 
-            opcion= new int[7];
-            for (int i = 0; i <opcion.length; ++i) {
-           opcion[i] = scan.nextInt();
-        } break;   
         
                 } return opcion;
             }
