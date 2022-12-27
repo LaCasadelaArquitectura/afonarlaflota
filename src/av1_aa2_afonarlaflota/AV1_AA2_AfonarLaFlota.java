@@ -207,7 +207,7 @@ Finalment es mostra el tauler per pantalla.
      int fila=0;
      int columna=0;
     String letras= "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"; 
-    String numeros= "123456789"; 
+    String numeros= "0123456789"; 
      imprimir_tauler(tauler_buit);
      
      for(int i=0; i<trets; i++){
@@ -265,7 +265,7 @@ Finalment es mostra el tauler per pantalla.
                  
         System.out.print("-  ");
         for (int i = 0; i <tauler.length; ++i) {
-       System.out.print(i+1 + "  ");
+       System.out.print(i + "  ");
       }
         for (int i = 0; i <tauler.length; ++i) {
             System.out.println(" ");

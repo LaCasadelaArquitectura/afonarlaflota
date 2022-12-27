@@ -6,15 +6,18 @@ package objetos;
 
 /**
  *
- * @author Usuario
+ * @author JMA
  */
+
+// Clase. Es crea la clase barco per poder crear els diferents tipus de barcos.
+// ací es declaren els atrubutos del barcos.
 public class Barco {
     public String tipodebarco;
     public char letra;
     public int ncasillas;
     public int colmax;
     
-  
+// ací declarem el constructor, en nun switch plenem tosts el atributos dient nomes el tipus de barco.  
     public Barco(String tipodebarco) {
      
         switch(tipodebarco){
